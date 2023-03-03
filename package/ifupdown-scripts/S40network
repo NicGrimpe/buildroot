@@ -16,6 +16,9 @@ case "$1" in
 	printf "Stopping network: "
 	/sbin/ifdown -a
 	[ $? = 0 ] && echo "OK" || echo "FAIL"
+	/sbin/ifconfig eth0 up
+	/sbin/udhcpc -i eth0 -R
+	echo "YOLO"
 	;;
   restart|reload)
 	"$0" stop
